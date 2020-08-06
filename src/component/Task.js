@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
-import PropTypes from "prop-types"
+
 export default function Task(props) {
-    const [Value, setValue] = useState('gfdsgf')
+
+    const [value, setvalue] = useState('')
+    const handleChange = (e) => {
+        e.preventDefault();
+        setvalue(e.target.value)
+    }
     const onsubmit = (e) => {
         e.preventDefault();
-        setValue(value)
+        console.log(value)
         props.addTask(value)
+        setvalue('')
+
 
     }
-    var value;
     return (
+
         <form onSubmit={onsubmit}>
-            <input type='text' ref={input => { value = input; console.log({ input }) }}></input>
+            <input type='text' onChange={handleChange} value={value}></input>
 
             <button >submit </button>
         </form>
 
 
-
     )
 
-}
-Task.propTypes = {
-    Value: PropTypes.string.isRequired
 }
